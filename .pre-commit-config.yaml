@@ -1,0 +1,60 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.1.0
+  hooks:
+  - id: check-json
+  - id: check-yaml
+  - id: check-xml  
+  - id: check-executables-have-shebangs
+  - id: check-merge-conflict
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+  - id: pretty-format-json
+    args: [--autofix, --no-sort-keys]
+
+- repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+  rev: 2.4.0
+  hooks:
+  - id: editorconfig-checker
+  
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+  - id: pretty-format-yaml
+    args: [--autofix, --indent, '2']
+
+- repo: https://github.com/sirosen/check-jsonschema
+  rev: 0.14.0
+  hooks:
+  - id: check-github-workflows
+  - id: check-github-actions
+  - id: check-azure-pipelines
+  - repo: https://github.com/KuriharaJun/pre-commit-hooks-dotnet-core
+    rev: v0.3
+    hooks:
+      - id: dotnet-format
+      - id: dotnet-test
+      
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 2.4.0
+    hooks:
+      - id: editorconfig-checker
+      
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+  - repo: https://github.com/psf/black
+    rev: 22.1.0
+    hooks:
+      - id: black
+        files: \.(py|pyi)$
+        types_or: [python, pyi, text]
+        args: ["--line-length=120"]
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.5.1
+    hooks:
+      - id: prettier
+        files: \.(js|ts|jsx|tsx|css|less|html|json|markdown|md|yaml|yml)$
+        exclude: 'azure-pipelines.*\.(yml)'
